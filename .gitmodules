@@ -1,0 +1,3 @@
+[submodule "lib/resource_packer"]
+	path = lib/resource_packer
+	url = git@github.com:senegalo/resource_packer.git

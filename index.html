@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Object 360</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="lib/resource_packer/resource_packer.js" type="text/javascript"></script>
+        <script src="js/object360.js" type="text/javascript"></script>
+    </head>
+    <body>
+
+        <canvas width="800" height="450" id="main-canvas" style="border: 1px solid black;"></canvas>
+
+
+        <script type="text/javascript">
+            
+            var o = new Object360({
+                canvas: document.getElementById("main-canvas"),
+                imagesPackage: "camera.pk",
+                afterLoadingCallback: function () {
+                    setInterval(function () {
+                        o.showFrame(++i);
+                        o.setZoomLevel(z);
+                        z += multiplier*0.1;
+                        if(z > 10 || z < 0.1){
+                            multiplier *= -1;
+                        }
+                    }, 35);
+                }
+            });
+
+            var i = 0;
+            var z = 0.1;
+            var multiplier = 1;
+            document.addEventListener("keydown", function (event) {
+                if (event.keyCode === 37) {
+                    o.showFrame(++i);
+                } else if (event.keyCode === 39) {
+                    o.showFrame(--i);
+                }
+            });
+
+
+        </script>
+
+    </body>
+</html>
